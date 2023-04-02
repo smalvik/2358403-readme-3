@@ -1,0 +1,15 @@
+# Create a new post
+POST http://localhost:3333/api/blog-post/create HTTP/1.1
+Content-Type: application/json
+
+{
+  "type": "video",
+  "status": "draft",
+  "tags": [
+    "test1",
+    "test2",
+    "test3"
+  ]
+}
+
+###

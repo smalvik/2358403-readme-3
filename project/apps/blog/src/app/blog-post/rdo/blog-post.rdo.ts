@@ -1,4 +1,5 @@
 import { Expose } from 'class-transformer';
+import { PostTypeEnum, PostStatusEnum } from '@project/shared/app-types';
 
 export class BlogPostRdo {
   @Expose({ name: '_id' })
@@ -21,6 +22,12 @@ export class BlogPostRdo {
 
   @Expose()
   public commentsCount: number;
+
+  @Expose()
+  public type: PostTypeEnum;
+
+  @Expose()
+  public status: PostStatusEnum;
 
   @Expose()
   public isReposted: boolean;
