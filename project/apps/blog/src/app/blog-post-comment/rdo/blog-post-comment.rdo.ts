@@ -1,7 +1,7 @@
 import { Expose } from 'class-transformer';
 import { CommentStatusEnum } from '@project/shared/app-types';
 
-export class BlogPostBaseRdo {
+export class BlogPostCommentRdo {
   @Expose({ name: '_id' })
   public id: string;
 

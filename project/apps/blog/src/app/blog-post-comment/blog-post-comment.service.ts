@@ -10,7 +10,7 @@ export class BlogPostCommentService {
     private readonly blogPostCommentRepository: BlogPostCommentMemoryRepository
   ) {}
 
-  public async register(dto: CreatePostCommentDto) {
+  public async create(dto: CreatePostCommentDto) {
     const { userId, postId, text } = dto;
 
     const blogPostComment = {
