@@ -1,7 +1,11 @@
+import { CommentStatusEnum } from './comment-status.enum';
+
 export interface Comment {
   _id?: string;
   userId: string;
   postId: string;
-  publicationDate: string;
   text: string;
+  status: CommentStatusEnum;
+  creationDate: number;
+  publicationDate: number;
 }
