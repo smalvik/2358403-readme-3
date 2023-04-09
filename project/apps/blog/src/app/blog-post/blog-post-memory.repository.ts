@@ -1,16 +1,16 @@
 import { CRUDRepository } from '@project/util/util-types';
-import { BlogPostEntity } from './blog-post.entity';
+import { BlogPostBaseEntity } from './blog-post.entity/blog-post-base.entity';
 import { Post } from '@project/shared/app-types';
 import { Injectable } from '@nestjs/common';
 import crypto from 'crypto';
 
 @Injectable()
 export class BlogPostMemoryRepository
-  implements CRUDRepository<BlogPostEntity, string, Post>
+  implements CRUDRepository<BlogPostBaseEntity, string, Post>
 {
   private repository: { [key: string]: Post } = {};
 
-  public async create(item: BlogPostEntity): Promise<Post> {
+  public async create(item: BlogPostBaseEntity): Promise<Post> {
     const entry = { ...item.toObject(), _id: crypto.randomUUID() };
     this.repository[entry._id] = entry;
 
@@ -29,7 +29,7 @@ export class BlogPostMemoryRepository
     delete this.repository[id];
   }
 
-  public async update(id: string, item: BlogPostEntity): Promise<Post> {
+  public async update(id: string, item: BlogPostBaseEntity): Promise<Post> {
     this.repository[id] = { ...item.toObject(), _id: id };
     return this.findById(id);
   }

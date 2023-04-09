@@ -9,7 +9,8 @@ Content-Type: application/json
     "test1",
     "test2",
     "test3"
-  ]
+  ],
+  "link": "http://bla-bla"
 }
 
 ###

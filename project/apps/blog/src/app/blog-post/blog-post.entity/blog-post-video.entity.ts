@@ -1,7 +1,10 @@
 import { PostVideo } from '@project/shared/app-types';
-import { BlogPostEntity } from './blog-post.entity';
+import { BlogPostBaseEntity } from './blog-post-base.entity';
 
-export class BlogPostVideoEntity extends BlogPostEntity implements PostVideo {
+export class BlogPostVideoEntity
+  extends BlogPostBaseEntity
+  implements PostVideo
+{
   public title: string;
   public link: string;
 

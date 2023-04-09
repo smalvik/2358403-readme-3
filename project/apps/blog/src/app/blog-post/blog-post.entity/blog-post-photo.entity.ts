@@ -1,7 +1,10 @@
 import { PostPhoto } from '@project/shared/app-types';
-import { BlogPostEntity } from './blog-post.entity';
+import { BlogPostBaseEntity } from './blog-post-base.entity';
 
-export class BlogPostPhotoEntity extends BlogPostEntity implements PostPhoto {
+export class BlogPostPhotoEntity
+  extends BlogPostBaseEntity
+  implements PostPhoto
+{
   public photo: string;
 
   constructor(blogPost: PostPhoto) {

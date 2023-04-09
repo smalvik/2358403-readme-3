@@ -1,7 +1,10 @@
 import { PostQuote } from '@project/shared/app-types';
-import { BlogPostEntity } from './blog-post.entity';
+import { BlogPostBaseEntity } from './blog-post-base.entity';
 
-export class BlogPostQuoteEntity extends BlogPostEntity implements PostQuote {
+export class BlogPostQuoteEntity
+  extends BlogPostBaseEntity
+  implements PostQuote
+{
   public quote: string;
   public author: string;
 

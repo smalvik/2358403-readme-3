@@ -1,7 +1,7 @@
 import { PostLink } from '@project/shared/app-types';
-import { BlogPostEntity } from './blog-post.entity';
+import { BlogPostBaseEntity } from './blog-post-base.entity';
 
-export class BlogPostLinkEntity extends BlogPostEntity implements PostLink {
+export class BlogPostLinkEntity extends BlogPostBaseEntity implements PostLink {
   public link: string;
   public description?: string;
 

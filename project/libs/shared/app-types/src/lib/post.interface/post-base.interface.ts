@@ -1,12 +1,11 @@
-import { PostTypeEnum } from './post-type.enum';
-import { PostStatusEnum } from './post-status.enum';
+import { PostTypeEnum, PostStatusEnum } from '../post.enum';
 
-export interface Post {
+export interface PostBase {
   _id?: string;
   userId: string;
   authorUserId: string;
-  creationDate: string;
-  publicationDate: string;
+  creationDate: number;
+  publicationDate: number;
   likesCount: number;
   commentsCount: number;
   type: PostTypeEnum;

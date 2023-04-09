@@ -1,11 +1,15 @@
-import { Post, PostTypeEnum, PostStatusEnum } from '@project/shared/app-types';
+import {
+  PostBase,
+  PostTypeEnum,
+  PostStatusEnum,
+} from '@project/shared/app-types';
 
-export class BlogPostEntity implements Post {
+export class BlogPostBaseEntity implements PostBase {
   public _id: string;
   public userId: string;
   public authorUserId: string;
-  public creationDate: string;
-  public publicationDate: string;
+  public creationDate: number;
+  public publicationDate: number;
   public likesCount: number;
   public commentsCount: number;
   public type: PostTypeEnum;
@@ -13,7 +17,7 @@ export class BlogPostEntity implements Post {
   public isReposted: boolean;
   public tags?: string[];
 
-  constructor(blogPost: Post) {
+  constructor(blogPost: PostBase) {
     this.fillEntity(blogPost);
   }
 
@@ -21,7 +25,7 @@ export class BlogPostEntity implements Post {
     return { ...this };
   }
 
-  public fillEntity(blogPost: Post) {
+  public fillEntity(blogPost: PostBase) {
     this._id = blogPost._id;
     this.userId = blogPost.userId;
     this.authorUserId = blogPost.authorUserId;
@@ -33,5 +37,15 @@ export class BlogPostEntity implements Post {
     this.status = blogPost.status;
     this.isReposted = blogPost.isReposted;
     this.tags = blogPost.tags;
+  }
+
+  public setCreationDate() {
+    this.creationDate = Date.now();
+    return this;
+  }
+
+  public setPublicationDate() {
+    this.publicationDate = Date.now();
+    return this;
   }
 }

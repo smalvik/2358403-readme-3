@@ -1,7 +1,7 @@
 import { Expose } from 'class-transformer';
 import { PostTypeEnum, PostStatusEnum } from '@project/shared/app-types';
 
-export class BlogPostRdo {
+export class BlogPostBaseRdo {
   @Expose({ name: '_id' })
   public id: string;
 

@@ -1,21 +1,64 @@
 import { Injectable } from '@nestjs/common';
 import { BlogPostMemoryRepository } from './blog-post-memory.repository';
-import { CreatePostDto } from './dto/create-post.dto';
-import dayjs from 'dayjs';
-import { BlogPostEntity } from './blog-post.entity';
+import {
+  BlogPostBaseEntity,
+  // BlogPostVideoEntity,
+  // BlogPostTextEntity
+} from './blog-post.entity';
+// import { PostConnectionsTypes } from './posts-connections-types';
+// import { Post } from '@project/shared/app-types';
+import {
+  CreatePostDto,
+  // CreatePostVideoDto,
+  // CreatePostTextDto,
+} from './dto/create-post.dto';
+// import { PostTypeEnum } from '@project/shared/app-types';
 
 @Injectable()
 export class BlogPostService {
   constructor(private readonly blogPostRepository: BlogPostMemoryRepository) {}
 
-  public async create(dto: CreatePostDto) {
-    const { type, status, tags } = dto;
+  // private getConnectionType(type: string) {
+  //   return PostConnectionsTypes.find(
+  //     (connectionType) => connectionType.type === type
+  //   );
+  // }
+
+  // Create post
+  // public async create(postData: CreatePostDto): Promise<Post> {
+
+  //   if (postData.type === PostTypeEnum.Video) {
+  //     const { type, status, tags, title, link } = postData;
+
+  //     const blogPost = {
+  //       userId: '',
+  //       authorUserId: '',
+  //       creationDate: Date.now(),
+  //       publicationDate: Date.now(),
+  //       likesCount: 0,
+  //       commentsCount: 0,
+  //       isReposted: false,
+  //       type,
+  //       status,
+  //       tags,
+  //       title,
+  //       link,
+  //     };
+
+  //     const postEntity = new BlogPostVideoEntity(blogPost);
+  //   }
+
+  //   return null;
+  // }
+
+  public async create(postData: CreatePostDto) {
+    const { type, status, tags } = postData;
 
     const blogPost = {
       userId: '',
       authorUserId: '',
-      creationDate: dayjs().toISOString(),
-      publicationDate: dayjs().toISOString(),
+      creationDate: Date.now(),
+      publicationDate: Date.now(),
       likesCount: 0,
       commentsCount: 0,
       type,
@@ -24,7 +67,7 @@ export class BlogPostService {
       tags,
     };
 
-    const postEntity = await new BlogPostEntity(blogPost);
+    const postEntity = new BlogPostBaseEntity(blogPost);
 
     return this.blogPostRepository.create(postEntity);
   }
