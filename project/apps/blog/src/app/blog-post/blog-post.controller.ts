@@ -10,13 +10,16 @@ import {
   BlogPostLinkRdo,
 } from './rdo';
 import { fillObject } from '@project/util/util-core';
-import { ApiTags } from '@nestjs/swagger';
+import { ApiResponse, ApiTags } from '@nestjs/swagger';
 
 @ApiTags('blog-post')
 @Controller('blog-post')
 export class BlogPostController {
   constructor(private readonly blogPostService: BlogPostService) {}
 
+  @ApiResponse({
+    type: BlogPostBaseRdo,
+  })
   @Post('create')
   public async create(
     @Body()
