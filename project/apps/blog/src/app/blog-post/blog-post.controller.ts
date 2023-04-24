@@ -1,7 +1,14 @@
 import { Body, Controller, Post } from '@nestjs/common';
 import { BlogPostService } from './blog-post.service';
 import { CreatePostDto } from './dto/create-post.dto';
-import { BlogPostBaseRdo } from './rdo/blog-post.rdo';
+import {
+  BlogPostBaseRdo,
+  BlogPostVideoRdo,
+  BlogPostTextRdo,
+  BlogPostQuoteRdo,
+  BlogPostPhotoRdo,
+  BlogPostLinkRdo,
+} from './rdo';
 import { fillObject } from '@project/util/util-core';
 
 @Controller('blog-post')
@@ -13,8 +20,20 @@ export class BlogPostController {
     @Body()
     postData: CreatePostDto
   ) {
-    console.log(postData);
     const newPost = await this.blogPostService.create(postData);
-    return fillObject(BlogPostBaseRdo, newPost);
+
+    if (newPost.type === 'video') {
+      return fillObject(BlogPostVideoRdo, newPost);
+    } else if (newPost.type === 'text') {
+      return fillObject(BlogPostTextRdo, newPost);
+    } else if (newPost.type === 'quote') {
+      return fillObject(BlogPostQuoteRdo, newPost);
+    } else if (newPost.type === 'photo') {
+      return fillObject(BlogPostPhotoRdo, newPost);
+    } else if (newPost.type === 'link') {
+      return fillObject(BlogPostLinkRdo, newPost);
+    } else {
+      return fillObject(BlogPostBaseRdo, newPost);
+    }
   }
 }

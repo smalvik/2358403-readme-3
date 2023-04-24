@@ -1,73 +1,108 @@
 import { Injectable } from '@nestjs/common';
 import { BlogPostMemoryRepository } from './blog-post-memory.repository';
 import {
-  BlogPostBaseEntity,
-  // BlogPostVideoEntity,
-  // BlogPostTextEntity
+  BlogPostVideoEntity,
+  BlogPostTextEntity,
+  BlogPostQuoteEntity,
+  BlogPostLinkEntity,
+  BlogPostPhotoEntity,
 } from './blog-post.entity';
-// import { PostConnectionsTypes } from './posts-connections-types';
-// import { Post } from '@project/shared/app-types';
 import {
   CreatePostDto,
-  // CreatePostVideoDto,
-  // CreatePostTextDto,
+  CreatePostVideoDto,
+  CreatePostTextDto,
+  CreatePostQuoteDto,
+  CreatePostLinkDto,
+  CreatePostPhotoDto,
 } from './dto/create-post.dto';
-// import { PostTypeEnum } from '@project/shared/app-types';
+import {
+  PostBase,
+  PostQuote,
+  PostText,
+  PostVideo,
+  PostLink,
+  PostPhoto,
+} from '@project/shared/app-types';
 
 @Injectable()
 export class BlogPostService {
   constructor(private readonly blogPostRepository: BlogPostMemoryRepository) {}
 
-  // private getConnectionType(type: string) {
-  //   return PostConnectionsTypes.find(
-  //     (connectionType) => connectionType.type === type
-  //   );
-  // }
-
-  // Create post
-  // public async create(postData: CreatePostDto): Promise<Post> {
-
-  //   if (postData.type === PostTypeEnum.Video) {
-  //     const { type, status, tags, title, link } = postData;
-
-  //     const blogPost = {
-  //       userId: '',
-  //       authorUserId: '',
-  //       creationDate: Date.now(),
-  //       publicationDate: Date.now(),
-  //       likesCount: 0,
-  //       commentsCount: 0,
-  //       isReposted: false,
-  //       type,
-  //       status,
-  //       tags,
-  //       title,
-  //       link,
-  //     };
-
-  //     const postEntity = new BlogPostVideoEntity(blogPost);
-  //   }
-
-  //   return null;
-  // }
-
   public async create(postData: CreatePostDto) {
-    const { type, status, tags } = postData;
-
-    const blogPost = {
+    const blogPostBase: PostBase = {
       userId: '',
       authorUserId: '',
       creationDate: Date.now(),
       publicationDate: Date.now(),
       likesCount: 0,
       commentsCount: 0,
-      type,
-      status,
       isReposted: false,
-      tags,
+      type: postData.type,
+      status: postData.status,
+      tags: postData.tags,
     };
 
-    const postEntity = new BlogPostBaseEntity(blogPost);
+    let postEntity;
+
+    if (postData.type === 'video') {
+      const { title, link } = postData as CreatePostVideoDto;
+
+      const blogPost: PostVideo = {
+        ...blogPostBase,
+        title,
+        link,
+      };
+
+      postEntity = new BlogPostVideoEntity(blogPost);
+    }
+
+    if (postData.type === 'text') {
+      const { title, announcement, text } = postData as CreatePostTextDto;
+
+      const blogPost: PostText = {
+        ...blogPostBase,
+        title,
+        announcement,
+        text,
+      };
+
+      postEntity = new BlogPostTextEntity(blogPost);
+    }
+
+    if (postData.type === 'quote') {
+      const { quote, author } = postData as CreatePostQuoteDto;
+
+      const blogPost: PostQuote = {
+        ...blogPostBase,
+        quote,
+        author,
+      };
+
+      postEntity = new BlogPostQuoteEntity(blogPost);
+    }
+
+    if (postData.type === 'photo') {
+      const { photo } = postData as CreatePostPhotoDto;
+
+      const blogPost: PostPhoto = {
+        ...blogPostBase,
+        photo,
+      };
+
+      postEntity = new BlogPostPhotoEntity(blogPost);
+    }
+
+    if (postData.type === 'link') {
+      const { link, description } = postData as CreatePostLinkDto;
+
+      const blogPost: PostLink = {
+        ...blogPostBase,
+        link,
+        description,
+      };
+
+      postEntity = new BlogPostLinkEntity(blogPost);
+    }
 
     return this.blogPostRepository.create(postEntity);
   }

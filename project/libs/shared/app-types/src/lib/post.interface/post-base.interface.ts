@@ -1,4 +1,4 @@
-import { PostTypeEnum, PostStatusEnum } from '../post.enum';
+// import { PostTypeEnum, PostStatusEnum } from '../post.enum';
 
 export interface PostBase {
   _id?: string;
@@ -8,8 +8,8 @@ export interface PostBase {
   publicationDate: number;
   likesCount: number;
   commentsCount: number;
-  type: PostTypeEnum;
-  status: PostStatusEnum;
+  type: string;
+  status: string;
   isReposted: boolean;
   tags?: string[];
 }

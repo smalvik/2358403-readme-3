@@ -5,17 +5,19 @@ import { CreatePostQuoteDto } from './create-post-quote.dto';
 import { CreatePostTextDto } from './create-post-text.dto';
 import { CreatePostVideoDto } from './create-post-video.dto';
 
-export { CreatePostBaseDto };
-export { CreatePostLinkDto };
-export { CreatePostPhotoDto };
-export { CreatePostQuoteDto };
-export { CreatePostTextDto };
-export { CreatePostVideoDto };
+export {
+  CreatePostBaseDto,
+  CreatePostLinkDto,
+  CreatePostPhotoDto,
+  CreatePostQuoteDto,
+  CreatePostTextDto,
+  CreatePostVideoDto,
+};
 
 export type CreatePostDto =
   | CreatePostBaseDto
   | CreatePostVideoDto
-  | CreatePostTextDto;
-// | CreatePostQuoteDto
-// | CreatePostPhotoDto
-// | CreatePostLinkDto;
+  | CreatePostTextDto
+  | CreatePostQuoteDto
+  | CreatePostPhotoDto
+  | CreatePostLinkDto;

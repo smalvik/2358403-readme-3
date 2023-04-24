@@ -5,12 +5,7 @@ import { PostQuote } from './post-quote.interface';
 import { PostPhoto } from './post-photo.interface';
 import { PostLink } from './post-link.interface';
 
-export { PostBase };
-export { PostVideo };
-export { PostText };
-export { PostQuote };
-export { PostPhoto };
-export { PostLink };
+export { PostBase, PostVideo, PostText, PostQuote, PostPhoto, PostLink };
 
 export type Post =
   | PostBase

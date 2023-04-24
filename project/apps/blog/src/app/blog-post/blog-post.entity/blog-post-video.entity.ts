@@ -13,6 +13,10 @@ export class BlogPostVideoEntity
     this.fillEntity(blogPost);
   }
 
+  public toObject() {
+    return { ...this };
+  }
+
   public fillEntity(blogPost: PostVideo) {
     this.title = blogPost.title;
     this.link = blogPost.link;

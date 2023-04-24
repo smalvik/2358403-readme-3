@@ -1,7 +1,7 @@
-import { PostTypeEnum, PostStatusEnum } from '@project/shared/app-types';
+// import { PostTypeEnum, PostStatusEnum } from '@project/shared/app-types';
 
 export class CreatePostBaseDto {
-  public type: PostTypeEnum;
-  public status: PostStatusEnum;
+  public type: string;
+  public status: string;
   public tags?: string[];
 }
