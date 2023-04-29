@@ -5,9 +5,10 @@ export class BlogPostCommentEntity implements Comment {
   public userId: string;
   public postId: string;
   public text: string;
-  public status: CommentStatusEnum;
-  public creationDate: number;
-  public publicationDate: number;
+  public status?: CommentStatusEnum;
+  public createdAt?: number;
+  public publishedAt?: number;
+  public updatedAt?: number;
 
   constructor(blogPost: Comment) {
     this.fillEntity(blogPost);
@@ -23,7 +24,20 @@ export class BlogPostCommentEntity implements Comment {
     this.postId = blogPost.postId;
     this.text = blogPost.text;
     this.status = blogPost.status;
-    this.creationDate = blogPost.creationDate;
-    this.publicationDate = blogPost.publicationDate;
+    this.createdAt = blogPost.createdAt;
+    this.publishedAt = blogPost.publishedAt;
+    this.updatedAt = blogPost.updatedAt;
+  }
+
+  public setCreationDate() {
+    this.createdAt = Date.now();
+  }
+
+  public setUpdateDate() {
+    this.updatedAt = Date.now();
+  }
+
+  public setPublicationDate() {
+    this.publishedAt = Date.now();
   }
 }

@@ -5,7 +5,8 @@ export interface Comment {
   userId: string;
   postId: string;
   text: string;
-  status: CommentStatusEnum;
-  creationDate: number;
-  publicationDate: number;
+  status?: CommentStatusEnum;
+  createdAt?: number;
+  publishedAt?: number;
+  updatedAt?: number;
 }
