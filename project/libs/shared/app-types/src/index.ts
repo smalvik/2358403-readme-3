@@ -6,3 +6,5 @@ export * from './lib/post.enum';
 
 export * from './lib/comment.intefrace';
 export * from './lib/comment-status.enum';
+
+export * from './lib/like.interface';
